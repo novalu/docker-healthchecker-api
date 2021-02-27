@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "lib": ["es6", "dom"],
+    "types": ["reflect-metadata", "@types/node"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "declaration": true,
+    "rootDir": "./",
+    "outDir": "dist",
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "webpack.config.ts"
+  ]
+}

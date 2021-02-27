@@ -1,0 +1,1 @@
+{"version":3,"file":"ApiPlainConfiguration.js","sourceRoot":"","sources":["../../../src/model/ApiPlainConfiguration.ts"],"names":[],"mappings":";;;AAAA,+DAAiF;AAEjF,MAAM,qBAAsB,SAAQ,yCAAkB;IAClD,YACI,MAAgB,EACT,OAAe,IAAI;QAE1B,KAAK,CAAC,MAAM,EAAE,EAAE,CAAC,CAAC;QAFX,SAAI,GAAJ,IAAI,CAAe;IAG9B,CAAC;CACJ;AAEQ,sDAAqB"}
