@@ -23,14 +23,15 @@ class App {
             .help("h")
             .alias("h", "help")
 
-            .group("image", "Images:")
+            .group(["image", "file"], "Images:")
             .alias("i", "image")
             .describe("image", "Docker image to check. Could be defined more times.")
             .array("image")
             .string("image")
 
-            .describe("images-def", "JSON file with image definition in format [{image: string, alias: string}, ...]")
-            .string("images-def")
+            .alias("f", "file")
+            .describe("file", "JSON file with image definition in format [{name: string, image: string, alias: string}, ...], where there should be at least name or image. Alias is optional.")
+            .string("file")
 
             .alias("p", "port")
             .describe("port", "Port, on which will server run")
@@ -47,10 +48,10 @@ class App {
         let configuration: ApiPlainConfiguration | ApiFileConfiguration;
         if (argv.image !== undefined) {
             configuration = new ApiPlainConfiguration(argv.image as string[], argv.port);
-        } else if (argv.imagesFile !== undefined) {
-            configuration = new ApiFileConfiguration(argv.imagesFile as string, argv.port);
+        } else if (argv.file !== undefined) {
+            configuration = new ApiFileConfiguration(argv.file as string, argv.port);
         } else {
-            console.log("Image or imagesFile parameter should be provided.");
+            console.log("Image or file parameter should be provided.");
             return;
         }
 
