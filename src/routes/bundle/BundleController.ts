@@ -16,8 +16,9 @@ export class BundleController {
         ctx.body = await containersHealth(this.apiConfiguration);
     }
 
-    public install(router: Router) {
+    public install(router: Router, apiConfiguration: ApiFileConfiguration | ApiPlainConfiguration) {
         this.router = router;
+        this.apiConfiguration = apiConfiguration;
 
         router.get("/", async (ctx, next) => {
             await this.serve(ctx);
