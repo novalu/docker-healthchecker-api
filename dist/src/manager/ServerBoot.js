@@ -70,9 +70,9 @@ let ServerBoot = class ServerBoot {
             this.koa.use(koa_helmet_1.default());
         });
     }
-    installRoutes() {
+    installRoutes(apiConfiguration) {
         const router = new koa_router_1.default();
-        this.bundleController.install(router);
+        this.bundleController.install(router, apiConfiguration);
         this.koa.use(router.routes());
         this.koa.use(router.allowedMethods());
     }
@@ -81,19 +81,18 @@ let ServerBoot = class ServerBoot {
             this.logger.info(`Docker Healthchecker API server listening at ${uiConfiguration.port}.`);
         });
     }
-    startServer(uiConfiguration) {
+    startServer(apiConfiguration) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.bundleController.apiConfiguration = uiConfiguration;
-            yield this.createApp(uiConfiguration.port);
-            this.installRoutes();
+            yield this.createApp(apiConfiguration.port);
+            this.installRoutes(apiConfiguration);
             const server = http_1.default.createServer(this.koa.callback());
-            this.addListenCallback(server, () => __awaiter(this, void 0, void 0, function* () { return this.postStart(uiConfiguration); }));
-            this.addServerErrorCallback(server, uiConfiguration);
-            const portResult = joi_1.default.number().port().validate(uiConfiguration.port);
+            this.addListenCallback(server, () => __awaiter(this, void 0, void 0, function* () { return this.postStart(apiConfiguration); }));
+            this.addServerErrorCallback(server, apiConfiguration);
+            const portResult = joi_1.default.number().port().validate(apiConfiguration.port);
             if (portResult.error) {
                 throw new Error("Provided port is not valid");
             }
-            server.listen(uiConfiguration.port);
+            server.listen(apiConfiguration.port);
             return true;
         });
     }

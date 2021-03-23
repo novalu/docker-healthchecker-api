@@ -13,5 +13,5 @@ export declare class ServerBoot {
     createApp(port: number): Promise<void>;
     private installRoutes;
     private postStart;
-    startServer(uiConfiguration: ApiFileConfiguration | ApiPlainConfiguration): Promise<boolean>;
+    startServer(apiConfiguration: ApiFileConfiguration | ApiPlainConfiguration): Promise<boolean>;
 }

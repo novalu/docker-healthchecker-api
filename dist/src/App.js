@@ -41,13 +41,14 @@ let App = class App {
             const argv = yargs_1.default
                 .help("h")
                 .alias("h", "help")
-                .group("image", "Images:")
+                .group(["image", "file"], "Images:")
                 .alias("i", "image")
                 .describe("image", "Docker image to check. Could be defined more times.")
                 .array("image")
                 .string("image")
-                .describe("images-def", "JSON file with image definition in format [{image: string, alias: string}, ...]")
-                .string("images-def")
+                .alias("f", "file")
+                .describe("file", "JSON file with image definition in format [{name: string, image: string, alias: string}, ...], where there should be at least name or image. Alias is optional.")
+                .string("file")
                 .alias("p", "port")
                 .describe("port", "Port, on which will server run")
                 .number("port")
@@ -61,11 +62,11 @@ let App = class App {
             if (argv.image !== undefined) {
                 configuration = new ApiPlainConfiguration_1.ApiPlainConfiguration(argv.image, argv.port);
             }
-            else if (argv.imagesFile !== undefined) {
-                configuration = new ApiFileConfiguration_1.ApiFileConfiguration(argv.imagesFile, argv.port);
+            else if (argv.file !== undefined) {
+                configuration = new ApiFileConfiguration_1.ApiFileConfiguration(argv.file, argv.port);
             }
             else {
-                console.log("Image or imagesFile parameter should be provided.");
+                console.log("Image or file parameter should be provided.");
                 return;
             }
             return this.serverBoot.startServer(configuration);

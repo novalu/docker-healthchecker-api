@@ -5,5 +5,5 @@ export declare class BundleController {
     router: Router;
     apiConfiguration: ApiFileConfiguration | ApiPlainConfiguration;
     private serve;
-    install(router: Router): void;
+    install(router: Router, apiConfiguration: ApiFileConfiguration | ApiPlainConfiguration): void;
 }

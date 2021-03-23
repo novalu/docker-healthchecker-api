@@ -24,8 +24,9 @@ let BundleController = class BundleController {
             ctx.body = yield docker_healthchecker_1.containersHealth(this.apiConfiguration);
         });
     }
-    install(router) {
+    install(router, apiConfiguration) {
         this.router = router;
+        this.apiConfiguration = apiConfiguration;
         router.get("/", (ctx, next) => __awaiter(this, void 0, void 0, function* () {
             yield this.serve(ctx);
         }));

@@ -1,6 +1,6 @@
 {
   "name": "docker-healthchecker-api",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.1",
   "description": "",
   "repository": "github:novalu/docker-healthchecker-api",
   "bin": "dist/src/start.js",
@@ -28,7 +28,7 @@
     "@types/lodash": "^4.14.168",
     "@types/node": "^14.14.31",
     "@types/yargs": "^16.0.0",
-    "docker-healthchecker": "file:.yalc/docker-healthchecker",
+    "docker-healthchecker": "1.0.0-beta.3",
     "inversify": "^5.0.5",
     "koa": "^2.13.1",
     "koa-compress": "^5.0.1",
