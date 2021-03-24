@@ -11,7 +11,7 @@ import {SignaleLogger} from "./utils/log/impl/SignaleLogger";
 import {ConsoleLogger} from "./utils/log/impl/ConsoleLogger";
 
 async function start(): Promise<App> {
-    container.bind<Logger>(TYPES.Logger).to(ConsoleLogger).inSingletonScope();
+    container.bind<Logger>(TYPES.Logger).to(SignaleLogger).inSingletonScope();
 
     const cli = container.get<App>(TYPES.App);
     const started = await cli.start();
