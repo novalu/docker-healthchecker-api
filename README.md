@@ -1,3 +1,20 @@
-# Docker healthchecker UI
+# Docker Healthchecker API
 
-README will be soon here
+## CLI
+
+### Images:
+| Parameter | Description | Type | Default |
+| ---- | ----------- | ---- | ---- |
+| -i, --image | Docker image to check. Could be defined more times. | string | `''` |
+| -f, --file | JSON file with image definition in format `[{name: string, image: string, alias: string}, ...]`, where there should be at least `name` or `image`. Parameter `alias` is optional. | string | `''` |
+
+### Server:
+| Parameter | Description | Type | Default |
+| ---- | ----------- | ---- | ------ |
+| --p, --port | Port, on which will server run | number | 8080 |
+
+### Options:
+| Parameter | Description | Type |
+| ---- | ----------- | ---- |
+| --version | Show version number | --- |
+| -h, --help | Show help | --- |
