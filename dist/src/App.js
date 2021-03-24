@@ -49,6 +49,7 @@ let App = class App {
                 .alias("f", "file")
                 .describe("file", "JSON file with image definition in format [{name: string, image: string, alias: string}, ...], where there should be at least name or image. Alias is optional.")
                 .string("file")
+                .group("port", "Server:")
                 .alias("p", "port")
                 .describe("port", "Port, on which will server run")
                 .number("port")

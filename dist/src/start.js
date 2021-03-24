@@ -16,10 +16,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const container_1 = __importDefault(require("./di/container"));
 const types_1 = __importDefault(require("./di/types"));
-const ConsoleLogger_1 = require("./utils/log/impl/ConsoleLogger");
+const SignaleLogger_1 = require("./utils/log/impl/SignaleLogger");
 function start() {
     return __awaiter(this, void 0, void 0, function* () {
-        container_1.default.bind(types_1.default.Logger).to(ConsoleLogger_1.ConsoleLogger).inSingletonScope();
+        container_1.default.bind(types_1.default.Logger).to(SignaleLogger_1.SignaleLogger).inSingletonScope();
         const cli = container_1.default.get(types_1.default.App);
         const started = yield cli.start();
         return started ? cli : undefined;
