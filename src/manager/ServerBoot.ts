@@ -11,6 +11,8 @@ import TYPES from "../di/types";
 import {BundleController} from "../routes/bundle/BundleController";
 import {Logger} from "../utils/log/Logger";
 import Joi from "@hapi/joi";
+import http2 from "http2";
+import fs from "fs";
 
 @injectable()
 export class ServerBoot {
@@ -68,7 +70,19 @@ export class ServerBoot {
     public async startServer(apiConfiguration: ApiFileConfiguration | ApiPlainConfiguration): Promise<boolean> {
         await this.createApp(apiConfiguration.port);
         this.installRoutes(apiConfiguration);
-        const server = http.createServer(this.koa.callback());
+
+        let server;
+        if (apiConfiguration.https) {
+            const options = {
+                key: fs.readFileSync(apiConfiguration.httpsKey),
+                cert: fs.readFileSync(apiConfiguration.httpsCert),
+                allowHTTP1: true
+            };
+            server = http2.createSecureServer(options, this.koa.callback());
+        } else {
+            server = http.createServer(this.koa.callback());
+        }
+
         this.addListenCallback(server, async () => this.postStart(apiConfiguration));
         this.addServerErrorCallback(server, apiConfiguration);
 

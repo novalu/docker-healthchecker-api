@@ -12,6 +12,9 @@
 | Parameter | Description | Type | Default |
 | ---- | ----------- | ---- | ------ |
 | --p, --port | Port, on which will server run | number | 8080 |
+| --https | Enable HTTPS | boolean | false |
+| --cert | Path to the HTTPS certificate file | string | `''` |
+| --key | Path to the HTTPS private key file | string | `''` |
 
 ### Options:
 | Parameter | Description | Type |

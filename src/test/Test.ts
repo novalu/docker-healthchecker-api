@@ -13,14 +13,12 @@ class Test {
     ) {}
 
     public async start(): Promise<boolean> {
-        // const configuration = new UiFileConfiguration(
-        //     [ "test", "test1", "test2", "test3", "test4" ],
-        //     undefined,
-        //     8080
-        // );
         const configuration = new ApiPlainConfiguration(
-            [ "mongo-festapp-nocvedcu-local" ],
-            8080
+            [ "test", "test1", "test2", "test3", "test4" ],
+            8080,
+            false,
+            "",
+            ""
         );
         return this.serverBoot.startServer(configuration);
     }
