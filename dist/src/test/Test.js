@@ -36,12 +36,7 @@ let Test = class Test {
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
-            // const configuration = new UiFileConfiguration(
-            //     [ "test", "test1", "test2", "test3", "test4" ],
-            //     undefined,
-            //     8080
-            // );
-            const configuration = new ApiPlainConfiguration_1.ApiPlainConfiguration(["mongo-festapp-nocvedcu-local"], 8080);
+            const configuration = new ApiPlainConfiguration_1.ApiPlainConfiguration(["test", "test1", "test2", "test3", "test4"], 8080, false, "", "");
             return this.serverBoot.startServer(configuration);
         });
     }

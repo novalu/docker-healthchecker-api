@@ -34,6 +34,8 @@ const koa_helmet_1 = __importDefault(require("koa-helmet"));
 const types_1 = __importDefault(require("../di/types"));
 const BundleController_1 = require("../routes/bundle/BundleController");
 const joi_1 = __importDefault(require("@hapi/joi"));
+const http2_1 = __importDefault(require("http2"));
+const fs_1 = __importDefault(require("fs"));
 let ServerBoot = class ServerBoot {
     constructor(bundleController, logger) {
         this.bundleController = bundleController;
@@ -85,7 +87,18 @@ let ServerBoot = class ServerBoot {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.createApp(apiConfiguration.port);
             this.installRoutes(apiConfiguration);
-            const server = http_1.default.createServer(this.koa.callback());
+            let server;
+            if (apiConfiguration.https) {
+                const options = {
+                    key: fs_1.default.readFileSync(apiConfiguration.httpsKey),
+                    cert: fs_1.default.readFileSync(apiConfiguration.httpsCert),
+                    allowHTTP1: true
+                };
+                server = http2_1.default.createSecureServer(options, this.koa.callback());
+            }
+            else {
+                server = http_1.default.createServer(this.koa.callback());
+            }
             this.addListenCallback(server, () => __awaiter(this, void 0, void 0, function* () { return this.postStart(apiConfiguration); }));
             this.addServerErrorCallback(server, apiConfiguration);
             const portResult = joi_1.default.number().port().validate(apiConfiguration.port);

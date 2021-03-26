@@ -42,18 +42,26 @@ let App = class App {
                 .help("h")
                 .alias("h", "help")
                 .group(["image", "file"], "Images:")
-                .alias("i", "image")
                 .describe("image", "Docker image to check. Could be defined more times.")
+                .alias("i", "image")
                 .array("image")
                 .string("image")
-                .alias("f", "file")
                 .describe("file", "JSON file with image definition in format [{name: string, image: string, alias: string}, ...], where there should be at least name or image. Alias is optional.")
+                .alias("f", "file")
                 .string("file")
                 .group("port", "Server:")
-                .alias("p", "port")
                 .describe("port", "Port, on which will server run")
+                .alias("p", "port")
                 .number("port")
                 .default("port", 8080)
+                .describe("https", "Enable HTTPS")
+                .default("https", false)
+                .describe("cert", "Path to HTTPS certificate")
+                .string("cert")
+                .default("cert", "")
+                .describe("key", "Path to HTTPS private key")
+                .string("key")
+                .default("key", "")
                 .fail((msg, err) => {
                 console.error(msg);
                 process.exit(1);
@@ -61,10 +69,10 @@ let App = class App {
                 .argv;
             let configuration;
             if (argv.image !== undefined) {
-                configuration = new ApiPlainConfiguration_1.ApiPlainConfiguration(argv.image, argv.port);
+                configuration = new ApiPlainConfiguration_1.ApiPlainConfiguration(argv.image, argv.port, argv.https, argv.cert, argv.key);
             }
             else if (argv.file !== undefined) {
-                configuration = new ApiFileConfiguration_1.ApiFileConfiguration(argv.file, argv.port);
+                configuration = new ApiFileConfiguration_1.ApiFileConfiguration(argv.file, argv.port, argv.https, argv.cert, argv.key);
             }
             else {
                 console.log("Image or file parameter should be provided.");
