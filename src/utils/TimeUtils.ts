@@ -9,4 +9,4 @@ class TimeUtils {
   public static moment = moment;
 }
 
-export { TimeUtils };
+export {TimeUtils};

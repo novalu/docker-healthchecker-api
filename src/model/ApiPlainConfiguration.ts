@@ -1,15 +1,17 @@
-import { ConsoleConsumerOptions, PlainConfiguration} from "docker-healthchecker";
+import {PlainConfiguration} from "docker-healthchecker";
 
-class ApiPlainConfiguration extends PlainConfiguration{
-    constructor(
-        images: string[],
-        public port: number = 8080,
-        public https: boolean,
-        public httpsCert: string,
-        public httpsKey: string
-    ) {
-        super(images, []);
-    }
+class ApiPlainConfiguration extends PlainConfiguration {
+  constructor(
+    images: string[],
+    public port: number = 8080,
+    public https: boolean,
+    public httpsCert: string,
+    public httpsKey: string,
+    public httpsCa: string[],
+    public httpsPassphrase: string
+  ) {
+    super(images, []);
+  }
 }
 
-export { ApiPlainConfiguration }
+export {ApiPlainConfiguration}

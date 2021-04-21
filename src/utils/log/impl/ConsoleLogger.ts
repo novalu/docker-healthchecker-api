@@ -1,7 +1,5 @@
-import { injectable } from "inversify";
-import PrettyError from "pretty-error";
-import signale, { Signale } from "signale";
-import { Logger } from "../Logger";
+import {injectable} from "inversify";
+import {Logger} from "../Logger";
 
 @injectable()
 class ConsoleLogger implements Logger {
@@ -30,4 +28,4 @@ class ConsoleLogger implements Logger {
   }
 }
 
-export { ConsoleLogger };
+export {ConsoleLogger};

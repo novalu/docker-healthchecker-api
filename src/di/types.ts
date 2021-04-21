@@ -1,12 +1,12 @@
 const TYPES = {
-    Test: Symbol("Test"),
-    App: Symbol("App"),
+  Test: Symbol("Test"),
+  App: Symbol("App"),
 
-    ServerBoot: Symbol("ServerBoot"),
+  ServerBoot: Symbol("ServerBoot"),
 
-    BundleController: Symbol("BundleController"),
+  BundleController: Symbol("BundleController"),
 
-    Logger: Symbol("Logger")
+  Logger: Symbol("Logger")
 }
 
 export default TYPES;

@@ -1,7 +1,5 @@
-import { injectable } from "inversify";
-import PrettyError from "pretty-error";
-import signale, { Signale } from "signale";
-import { Logger } from "../Logger";
+import {injectable} from "inversify";
+import {Logger} from "../Logger";
 
 @injectable()
 class NoOpLogger implements Logger {
@@ -35,4 +33,4 @@ class NoOpLogger implements Logger {
   }
 }
 
-export { NoOpLogger };
+export {NoOpLogger};

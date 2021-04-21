@@ -1,5 +1,14 @@
 [
-  { "name": "my-service-dev", "alias": "dev" },
-  { "name": "my-service-production", "alias": "dev" },
-  { "image": "postgres", "alias": "postgres-db" }
+  {
+    "name": "my-service-dev",
+    "alias": "dev"
+  },
+  {
+    "name": "my-service-production",
+    "alias": "dev"
+  },
+  {
+    "image": "postgres",
+    "alias": "postgres-db"
+  }
 ]
