@@ -67,30 +67,38 @@ export class ServerBoot {
         this.logger.info(`Docker Healthchecker API server listening at ${uiConfiguration.port}.`);
     }
 
-    public async startServer(apiConfiguration: ApiFileConfiguration | ApiPlainConfiguration): Promise<boolean> {
-        await this.createApp(apiConfiguration.port);
-        this.installRoutes(apiConfiguration);
+    public async startServer(conf: ApiFileConfiguration | ApiPlainConfiguration): Promise<boolean> {
+        await this.createApp(conf.port);
+        this.installRoutes(conf);
 
         let server;
-        if (apiConfiguration.https) {
-            const options = {
-                key: fs.readFileSync(apiConfiguration.httpsKey),
-                cert: fs.readFileSync(apiConfiguration.httpsCert),
+        if (conf.https) {
+            const options: any = {
+                key: fs.readFileSync(conf.httpsKey),
+                cert: fs.readFileSync(conf.httpsCert),
                 allowHTTP1: true
             };
+            if (conf.httpsCa !== undefined && conf.httpsCa.length > 0) {
+                const caBuffers: Buffer[] = [];
+                for (const ca of conf.httpsCa) caBuffers.push(fs.readFileSync(ca));
+                options.ca = caBuffers;
+            }
+            if (conf.httpsPassphrase !== undefined && conf.httpsPassphrase !== "") {
+                options.passphrase = conf.httpsPassphrase;
+            }
             server = http2.createSecureServer(options, this.koa.callback());
         } else {
             server = http.createServer(this.koa.callback());
         }
 
-        this.addListenCallback(server, async () => this.postStart(apiConfiguration));
-        this.addServerErrorCallback(server, apiConfiguration);
+        this.addListenCallback(server, async () => this.postStart(conf));
+        this.addServerErrorCallback(server, conf);
 
-        const portResult = Joi.number().port().validate(apiConfiguration.port);
+        const portResult = Joi.number().port().validate(conf.port);
         if (portResult.error) {
             throw new Error("Provided port is not valid");
         }
-        server.listen(apiConfiguration.port);
+        server.listen(conf.port);
 
         return true;
     }

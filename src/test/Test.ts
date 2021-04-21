@@ -18,7 +18,9 @@ class Test {
             8080,
             false,
             "",
-            ""
+            "",
+          [],
+          ""
         );
         return this.serverBoot.startServer(configuration);
     }

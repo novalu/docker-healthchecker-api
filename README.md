@@ -15,6 +15,8 @@
 | --https | Enable HTTPS | boolean | false |
 | --cert | Path to the HTTPS certificate file | string | `''` |
 | --key | Path to the HTTPS private key file | string | `''` |
+| --ca | Path to HTTPS certificate authorities. Could be repeated more times. Optional. | string | `''` |
+| --passphrase | HTTPS passphrase. Optional. | string | `''` |
 
 ### Options:
 | Parameter | Description | Type |
