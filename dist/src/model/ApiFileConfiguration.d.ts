@@ -4,6 +4,8 @@ declare class ApiFileConfiguration extends FileConfiguration {
     https: boolean;
     httpsCert: string;
     httpsKey: string;
-    constructor(filePath: string, port: number, https: boolean, httpsCert: string, httpsKey: string);
+    httpsCa: string[];
+    httpsPassphrase: string;
+    constructor(filePath: string, port: number, https: boolean, httpsCert: string, httpsKey: string, httpsCa: string[], httpsPassphrase: string);
 }
 export { ApiFileConfiguration };

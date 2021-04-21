@@ -83,29 +83,38 @@ let ServerBoot = class ServerBoot {
             this.logger.info(`Docker Healthchecker API server listening at ${uiConfiguration.port}.`);
         });
     }
-    startServer(apiConfiguration) {
+    startServer(conf) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.createApp(apiConfiguration.port);
-            this.installRoutes(apiConfiguration);
+            yield this.createApp(conf.port);
+            this.installRoutes(conf);
             let server;
-            if (apiConfiguration.https) {
+            if (conf.https) {
                 const options = {
-                    key: fs_1.default.readFileSync(apiConfiguration.httpsKey),
-                    cert: fs_1.default.readFileSync(apiConfiguration.httpsCert),
+                    key: fs_1.default.readFileSync(conf.httpsKey),
+                    cert: fs_1.default.readFileSync(conf.httpsCert),
                     allowHTTP1: true
                 };
+                if (conf.httpsCa !== undefined && conf.httpsCa.length > 0) {
+                    const caBuffers = [];
+                    for (const ca of conf.httpsCa)
+                        caBuffers.push(fs_1.default.readFileSync(ca));
+                    options.ca = caBuffers;
+                }
+                if (conf.httpsPassphrase !== undefined && conf.httpsPassphrase !== "") {
+                    options.passphrase = conf.httpsPassphrase;
+                }
                 server = http2_1.default.createSecureServer(options, this.koa.callback());
             }
             else {
                 server = http_1.default.createServer(this.koa.callback());
             }
-            this.addListenCallback(server, () => __awaiter(this, void 0, void 0, function* () { return this.postStart(apiConfiguration); }));
-            this.addServerErrorCallback(server, apiConfiguration);
-            const portResult = joi_1.default.number().port().validate(apiConfiguration.port);
+            this.addListenCallback(server, () => __awaiter(this, void 0, void 0, function* () { return this.postStart(conf); }));
+            this.addServerErrorCallback(server, conf);
+            const portResult = joi_1.default.number().port().validate(conf.port);
             if (portResult.error) {
                 throw new Error("Provided port is not valid");
             }
-            server.listen(apiConfiguration.port);
+            server.listen(conf.port);
             return true;
         });
     }
