@@ -1,51 +1,77 @@
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
+  return function (target, key) {
+    decorator(target, key, paramIndex);
+  }
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
     });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+  return (mod && mod.__esModule) ? mod : {"default": mod};
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.Test = void 0;
 const inversify_1 = require("inversify");
 const types_1 = __importDefault(require("../di/types"));
 const ServerBoot_1 = require("../manager/ServerBoot");
 const ApiPlainConfiguration_1 = require("../model/ApiPlainConfiguration");
 let Test = class Test {
-    constructor(serverBoot, logger) {
-        this.serverBoot = serverBoot;
-        this.logger = logger;
-    }
-    start() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const configuration = new ApiPlainConfiguration_1.ApiPlainConfiguration(["test", "test1", "test2", "test3", "test4"], 8080, false, "", "", [], "");
-            return this.serverBoot.startServer(configuration);
-        });
-    }
+  constructor(serverBoot, logger) {
+    this.serverBoot = serverBoot;
+    this.logger = logger;
+  }
+
+  start() {
+    return __awaiter(this, void 0, void 0, function* () {
+      const configuration = new ApiPlainConfiguration_1.ApiPlainConfiguration(["test", "test1", "test2", "test3", "test4"], 8080, false, "", "", [], "");
+      return this.serverBoot.startServer(configuration);
+    });
+  }
 };
 Test = __decorate([
-    inversify_1.injectable(),
-    __param(0, inversify_1.inject(types_1.default.ServerBoot)),
-    __param(1, inversify_1.inject(types_1.default.Logger)),
-    __metadata("design:paramtypes", [ServerBoot_1.ServerBoot, Object])
+  inversify_1.injectable(),
+  __param(0, inversify_1.inject(types_1.default.ServerBoot)),
+  __param(1, inversify_1.inject(types_1.default.Logger)),
+  __metadata("design:paramtypes", [ServerBoot_1.ServerBoot, Object])
 ], Test);
 exports.Test = Test;
 //# sourceMappingURL=Test.js.map

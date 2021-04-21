@@ -1,1 +1,10 @@
-{"version":3,"file":"ApiPlainConfiguration.js","sourceRoot":"","sources":["../../../src/model/ApiPlainConfiguration.ts"],"names":[],"mappings":";;;AAAA,+DAAiF;AAEjF,MAAM,qBAAsB,SAAQ,yCAAkB;IAClD,YACI,MAAgB,EACT,OAAe,IAAI,EACnB,KAAc,EACd,SAAiB,EACjB,QAAgB,EAChB,OAAiB,EACjB,eAAuB;QAE9B,KAAK,CAAC,MAAM,EAAE,EAAE,CAAC,CAAC;QAPX,SAAI,GAAJ,IAAI,CAAe;QACnB,UAAK,GAAL,KAAK,CAAS;QACd,cAAS,GAAT,SAAS,CAAQ;QACjB,aAAQ,GAAR,QAAQ,CAAQ;QAChB,YAAO,GAAP,OAAO,CAAU;QACjB,oBAAe,GAAf,eAAe,CAAQ;IAGlC,CAAC;CACJ;AAEQ,sDAAqB"}
+{
+  "version": 3,
+  "file": "ApiPlainConfiguration.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/model/ApiPlainConfiguration.ts"
+  ],
+  "names": [],
+  "mappings": ";;;AAAA,+DAAiF;AAEjF,MAAM,qBAAsB,SAAQ,yCAAkB;IAClD,YACI,MAAgB,EACT,OAAe,IAAI,EACnB,KAAc,EACd,SAAiB,EACjB,QAAgB,EAChB,OAAiB,EACjB,eAAuB;QAE9B,KAAK,CAAC,MAAM,EAAE,EAAE,CAAC,CAAC;QAPX,SAAI,GAAJ,IAAI,CAAe;QACnB,UAAK,GAAL,KAAK,CAAS;QACd,cAAS,GAAT,SAAS,CAAQ;QACjB,aAAQ,GAAR,QAAQ,CAAQ;QAChB,YAAO,GAAP,OAAO,CAAU;QACjB,oBAAe,GAAf,eAAe,CAAQ;IAGlC,CAAC;CACJ;AAEQ,sDAAqB"
+}

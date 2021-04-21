@@ -12,4 +12,4 @@ interface Logger {
   fatal(body: string, extra?: any);
 }
 
-export { Logger };
+export {Logger};

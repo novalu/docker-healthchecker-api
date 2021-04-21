@@ -1,8 +1,14 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "lib": ["es6", "dom"],
-    "types": ["reflect-metadata", "@types/node"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "types": [
+      "reflect-metadata",
+      "@types/node"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
     "experimentalDecorators": true,
