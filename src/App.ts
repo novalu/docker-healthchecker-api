@@ -78,8 +78,8 @@ class App {
 
       .argv;
 
-    this.logger.debug("Yargs:");
-    this.logger.debug(JSON.stringify(argv));
+    // this.logger.debug("Yargs:");
+    // this.logger.debug(JSON.stringify(argv));
 
     const schema = Joi.object({
       image: Joi.array().items(Joi.string()),
@@ -107,17 +107,17 @@ class App {
     const ca = options.value.ca;
     const passphrase = options.value.passphrase;
 
-    this.logger.debug("Joi:");
-    this.logger.debug(JSON.stringify({image, file, port, https, cert, key, ca, passphrase}));
+    // this.logger.debug("Joi:");
+    // this.logger.debug(JSON.stringify({image, file, port, https, cert, key, ca, passphrase}));
 
     if ((!image && !file) || (image && file)) {
       this.logger.error("Only one of image and file should be provided");
     }
 
     let configuration: ApiPlainConfiguration | ApiFileConfiguration;
-    if (argv.image !== undefined) {
+    if (image !== undefined && image.length > 0) {
       configuration = new ApiPlainConfiguration(image, port, https, cert, key, ca, passphrase);
-    } else if (argv.file !== undefined) {
+    } else if (file) {
       configuration = new ApiFileConfiguration(file, port, https, cert, key, ca, passphrase);
     } else {
       this.logger.error("Image or file parameter should be provided.");
